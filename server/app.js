@@ -1,22 +1,21 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var passport = require('passport');
-var methodOverride = require('method-override');
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const methodOverride = require('method-override');
 
-var libs = process.cwd() + '/libs/';
-require(libs + 'auth/auth');
+require('./auth/auth');
 
-var config = require('./config');
-var log = require('./log')(module);
-var oauth2 = require('./auth/oauth2');
+const config = require('./config');
+const log = require('./log')(module);
+const oauth2 = require('./auth/oauth2');
 
-var api = require('./routes/api');
-var users = require('./routes/users');
-var articles = require('./routes/articles');
+const api = require('./routes/api');
+const users = require('./routes/users');
+const articles = require('./routes/articles');
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,7 +36,6 @@ app.use(function(req, res, next){
     res.json({ 
     	error: 'Not found' 
     });
-    return;
 });
 
 // error handlers
@@ -47,7 +45,6 @@ app.use(function(err, req, res, next){
     res.json({ 
     	error: err.message 
     });
-    return;
 });
 
 module.exports = app;

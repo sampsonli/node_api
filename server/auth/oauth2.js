@@ -1,32 +1,30 @@
-var oauth2orize = require('oauth2orize');
-var passport = require('passport');
-var crypto = require('crypto');
+const oauth2orize = require('oauth2orize');
+const passport = require('passport');
+const crypto = require('crypto');
 
-var libs = process.cwd() + '/libs/';
+const config = require('../config');
+const log = require('../log')(module);
 
-var config = require(libs + 'config');
-var log = require(libs + 'log')(module);
-
-var db = require(libs + 'db/mongoose');
-var User = require(libs + 'model/user');
-var AccessToken = require(libs + 'model/accessToken');
-var RefreshToken = require(libs + 'model/refreshToken');
+const db = require('../db/mongoose');
+const User = require('../model/user');
+const AccessToken = require('../model/accessToken');
+const RefreshToken = require('../model/refreshToken');
 
 // create OAuth 2.0 server
-var aserver = oauth2orize.createServer();
+const aserver = oauth2orize.createServer();
 
 // Generic error handler
-var errFn = function (cb, err) {
+const errFn = function (cb, err) {
 	if (err) { 
 		return cb(err); 
 	}
 };
 
 // Destroys any old tokens and generates a new access and refresh token
-var generateTokens = function (data, done) {
+const generateTokens = function (data, done) {
 
 	// curries in `done` callback so we don't need to pass it
-    var errorHandler = errFn.bind(undefined, done), 
+    let errorHandler = errFn.bind(undefined, done),
 	    refreshToken,
 	    refreshTokenValue,
 	    token,
@@ -71,7 +69,7 @@ aserver.exchange(oauth2orize.exchange.password(function(client, username, passwo
 			return done(null, false);
 		}
 
-		var model = { 
+		const model = {
 			userId: user.userId, 
 			clientId: client.clientId 
 		};
@@ -97,7 +95,7 @@ aserver.exchange(oauth2orize.exchange.refreshToken(function(client, refreshToken
 			if (err) { return done(err); }
 			if (!user) { return done(null, false); }
 
-			var model = { 
+			const model = {
 				userId: user.userId, 
 				clientId: client.clientId 
 			};

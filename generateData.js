@@ -1,6 +1,6 @@
 var faker = require('faker');
 
-var libs = process.cwd() + '/libs/';
+var libs = process.cwd() + '/server/';
 
 var log = require(libs + 'log')(module);
 var db = require(libs + 'db/mongoose');

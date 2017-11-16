@@ -1,10 +1,7 @@
-var express = require('express');
-var passport = require('passport');
-var router = express.Router();
-
-var libs = process.cwd() + '/libs/';
-
-var db = require(libs + 'db/mongoose');
+const express = require('express');
+const passport = require('passport');
+const router = express.Router();
+const db = require( '../db/mongoose');
 
 router.get('/info', passport.authenticate('bearer', { session: false }),
     function(req, res) {

@@ -1,16 +1,14 @@
-var passport = require('passport');
-var BasicStrategy = require('passport-http').BasicStrategy;
-var ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy;
-var BearerStrategy = require('passport-http-bearer').Strategy;
+const passport = require('passport');
+const BasicStrategy = require('passport-http').BasicStrategy;
+const ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy;
+const BearerStrategy = require('passport-http-bearer').Strategy;
 
-var libs = process.cwd() + '/libs/';
+const config = require('../config');
 
-var config = require(libs + 'config');
-
-var User = require(libs + 'model/user');
-var Client = require(libs + 'model/client');
-var AccessToken = require(libs + 'model/accessToken');
-var RefreshToken = require(libs + 'model/refreshToken');
+const User = require('../model/user');
+const Client = require('../model/client');
+const AccessToken = require( '../model/accessToken');
+const RefreshToken = require('../model/refreshToken');
 
 passport.use(new BasicStrategy(
     function(username, password, done) {
@@ -85,7 +83,7 @@ passport.use(new BearerStrategy(
                 	return done(null, false, { message: 'Unknown user' }); 
                 }
 
-                var info = { scope: '*' };
+                const info = { scope: '*' };
                 done(null, user, info);
             });
         });

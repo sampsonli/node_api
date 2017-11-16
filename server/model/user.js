@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
 	crypto = require('crypto'),
 
 	Schema = mongoose.Schema,

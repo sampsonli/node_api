@@ -1,12 +1,11 @@
-var express = require('express');
-var passport = require('passport');
-var router = express.Router();
+const express = require('express');
+const passport = require('passport');
+const router = express.Router();
 
-var libs = process.cwd() + '/libs/';
-var log = require(libs + 'log')(module);
+const log = require('../log')(module);
 
-var db = require(libs + 'db/mongoose');
-var Article = require(libs + 'model/article');
+const db = require('../db/mongoose');
+const Article = require('../model/article');
 
 router.get('/', passport.authenticate('bearer', { session: false }), function(req, res) {
 	
@@ -26,8 +25,8 @@ router.get('/', passport.authenticate('bearer', { session: false }), function(re
 });
 
 router.post('/', passport.authenticate('bearer', { session: false }), function(req, res) {
-	
-	var article = new Article({
+
+    const article = new Article({
 		title: req.body.title,
 		author: req.body.author,
 		description: req.body.description,
@@ -89,7 +88,7 @@ router.get('/:id', passport.authenticate('bearer', { session: false }), function
 });
 
 router.put('/:id', passport.authenticate('bearer', { session: false }), function (req, res){
-	var articleId = req.params.id;
+    const articleId = req.params.id;
 
 	Article.findById(articleId, function (err, article) {
 		if(!article) {

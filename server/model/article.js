@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // Article
-var Images = new Schema({
+const Images = new Schema({
 	kind: {
 		type: String,
 		enum: ['thumbnail', 'detail'],
@@ -11,7 +11,7 @@ var Images = new Schema({
 	url: { type: String, required: true }
 });
 
-var Article = new Schema({
+const Article = new Schema({
 	title: { type: String, required: true },
 	author: { type: String, required: true },
 	description: { type: String, required: true },
