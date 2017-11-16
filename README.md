@@ -76,14 +76,4 @@ sudo npm install jshint -g
 jshint libs/**/*.js generateData.js
 ```
 
-## Author
 
-This example was created by Evgeny Aleksandrov ([@EAleksandrov](http://twitter.com/EAleksandrov)).
-
-Updated by: 
-* [Istock Jared](https://github.com/IstockJared)
-* [Marko Arsić](http://portfolio.marsic.info/)  
-
-## License
-
-[MIT](https://github.com/ealeksandrov/NodeAPI/blob/master/LICENSE)
